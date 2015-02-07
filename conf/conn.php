@@ -1,17 +1,13 @@
 <?php
-// Informações para conexão
-$host = '';
-$usuario = 'root';
-$senha = '';
-$banco = 'teste';
-// Realizando conexão e selecionando o banco de dados
-$conn = mysql_connect($host, $usuario, $senha) or die(mysql_error());
-$db = mysql_select_db($banco, $conn) or die(mysql_error());
-// Definindo o charset como utf8 para evitar problemas com acentuação
-$charset = mysql_set_charset('utf8');
-// Função para carregar a classe automaticamente, quando instanciado o objeto
-function __autoload($class)
-{
-    require_once(dirname(__FILE__) . "/../class/{$class}.class.php");
+
+if ( ! session_id() ) @ session_start();
+
+$conn = new mysqli("localhost", "root", "", "teste");
+$conn->set_charset ('utf8');
+
+if ($conn->connect_errno) {
+    echo "Failed to connect to MySQL: (" . $conn->connect_errno . ") " . $conn>connect_error;
+    die;
 }
+
 ?>
