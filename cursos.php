@@ -39,7 +39,7 @@ $stmt->bind_result($id,$nome,$descricao,$area);
 			<td> 
 				<a class="btn btn-success" href="cursos_edit.php?id=<?php echo $id ?>" role="button"><i class="glyphicon glyphicon-pencil"></i> Editar</a> 
 				<a class="btn btn-danger" href="cursos_delete.php?id=<?php echo $id ?>" onclick="return confirm('Deseja realmente remover?');" role="button"><i class="glyphicon glyphicon-remove"></i> Remover</a> 
-
+				<a class="btn btn-primary" href="modulos.php?curso_id=<?php echo $id ?>" role="button"><i class="glyphicon glyphicon-list"></i> Modulos</a> 
 			</td>
 		</tr>
 	<?php
