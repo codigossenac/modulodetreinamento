@@ -44,6 +44,8 @@ $stmt->bind_result($id,$nome,$ordem);
 				<a class="btn btn-success" href="modulos_edit.php?curso_id=<?php echo $curso_id  ?>&id=<?php echo $id ?>" role="button"><i class="glyphicon glyphicon-pencil"></i> Editar</a> 
 				<a class="btn btn-danger" href="modulos_delete.php?curso_id=<?php echo $curso_id  ?>&id=<?php echo $id ?>" onclick="return confirm('Deseja realmente remover?');" role="button"><i class="glyphicon glyphicon-remove"></i> Remover</a> 
 
+				<a class="btn btn-primary" href="licoes.php?curso_id=<?php echo $curso_id  ?>&modulo_id=<?php echo $id ?>" role="button"><i class="glyphicon glyphicon-open-file"></i> Liçoes</a> 
+
 			</td>
 		</tr>
 	<?php
