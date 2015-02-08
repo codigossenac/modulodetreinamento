@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 07-Fev-2015 às 19:19
+-- Generation Time: 08-Fev-2015 às 02:01
 -- Versão do servidor: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -23,24 +23,46 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `areas`
+--
+
+CREATE TABLE IF NOT EXISTS `areas` (
+`area_id` int(11) NOT NULL,
+  `area_nome` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `areas`
+--
+
+INSERT INTO `areas` (`area_id`, `area_nome`) VALUES
+(1, 'Programação'),
+(6, 'Desenvolvimento de sistemas'),
+(7, 'Artes'),
+(8, 'Gestão');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `cursos`
 --
 
 CREATE TABLE IF NOT EXISTS `cursos` (
 `curso_id` int(4) NOT NULL,
   `curso_nome` varchar(255) NOT NULL,
-  `curso_area` varchar(255) DEFAULT NULL,
+  `curso_area_id` int(11) NOT NULL,
   `curso_descricao` text
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `cursos`
 --
 
-INSERT INTO `cursos` (`curso_id`, `curso_nome`, `curso_area`, `curso_descricao`) VALUES
-(1, 'Fotografia', 'Artes', 'Curso de Fotografia askdkjadkjaas'),
-(2, 'Programação PHP', 'TI - Programação', 'Aprenda a programar PHP'),
-(3, 'Redes', 'TI - Infraestrutura', 'Aprenda a configurar rede');
+INSERT INTO `cursos` (`curso_id`, `curso_nome`, `curso_area_id`, `curso_descricao`) VALUES
+(1, 'Fotografia', 7, 'Curso de Fotografia adsfadf'),
+(2, 'Programação PHP', 1, 'Aprenda a programar PHP'),
+(3, 'Redes', 8, 'Aprenda a configurar rede'),
+(4, 'Programação JAVA', 1, 'este curso tem como objetivo ensinar java');
 
 -- --------------------------------------------------------
 
@@ -49,10 +71,21 @@ INSERT INTO `cursos` (`curso_id`, `curso_nome`, `curso_area`, `curso_descricao`)
 --
 
 CREATE TABLE IF NOT EXISTS `licoes` (
-  `licao_id` int(11) NOT NULL,
-  `licao_nome` int(11) NOT NULL,
-  `licao_tipo` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+`licao_id` int(11) NOT NULL,
+  `licao_nome` varchar(255) NOT NULL,
+  `licao_tipo` varchar(255) NOT NULL,
+  `licao_ordem` int(11) NOT NULL,
+  `licao_modulo_id` int(11) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `licoes`
+--
+
+INSERT INTO `licoes` (`licao_id`, `licao_nome`, `licao_tipo`, `licao_ordem`, `licao_modulo_id`) VALUES
+(1, 'Apresentação', 'Video', 1, 1),
+(2, 'Apresentação - continuação', 'Texto', 2, 1),
+(3, 'Apresentação - Fase 3', 'Imagem', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -86,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `modulos` (
   `modulo_curso_id` varchar(255) NOT NULL,
   `modulo_nome` varchar(255) NOT NULL,
   `modulo_ordem` int(4) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `modulos`
@@ -95,7 +128,9 @@ CREATE TABLE IF NOT EXISTS `modulos` (
 INSERT INTO `modulos` (`modulo_id`, `modulo_curso_id`, `modulo_nome`, `modulo_ordem`) VALUES
 (1, '2', 'Introdução ao PHP', 1),
 (2, '2', 'Arrays', 2),
-(3, '3', 'Introdução a Redes', 1);
+(3, '3', 'Introdução a Redes', 1),
+(6, '1', 'fase 1', 1),
+(5, '1', 'fase2', 2);
 
 -- --------------------------------------------------------
 
@@ -128,17 +163,37 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `usuario_login` varchar(255) NOT NULL,
   `usuario_senha` varchar(255) NOT NULL,
   `usuario_tipo` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`usuario_id`, `usuario_nome`, `usuario_login`, `usuario_senha`, `usuario_tipo`) VALUES
+(1, 'Carlos Alberto', 'carlosr', 'carlos', 'Administrador'),
+(2, 'teste', 'teste', 'teste', 'Funcionario');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `areas`
+--
+ALTER TABLE `areas`
+ ADD PRIMARY KEY (`area_id`);
+
+--
 -- Indexes for table `cursos`
 --
 ALTER TABLE `cursos`
  ADD PRIMARY KEY (`curso_id`);
+
+--
+-- Indexes for table `licoes`
+--
+ALTER TABLE `licoes`
+ ADD PRIMARY KEY (`licao_id`);
 
 --
 -- Indexes for table `matriculas`
@@ -169,10 +224,20 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT for table `areas`
+--
+ALTER TABLE `areas`
+MODIFY `area_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
 -- AUTO_INCREMENT for table `cursos`
 --
 ALTER TABLE `cursos`
-MODIFY `curso_id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `curso_id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `licoes`
+--
+ALTER TABLE `licoes`
+MODIFY `licao_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `matriculas`
 --
@@ -182,12 +247,12 @@ MODIFY `matricula_id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `modulos`
 --
 ALTER TABLE `modulos`
-MODIFY `modulo_id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `modulo_id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
