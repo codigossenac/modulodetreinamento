@@ -13,7 +13,8 @@ $stmt->bind_result($id,$nome,$tipo,$ordem);
 ?>
 <h2>Liçoes</h2>
 
-<a class="btn btn-success" href="licoes_edit.php?id=0" role="button"><i class="glyphicon glyphicon-plus"></i> Nova area</a>
+<a class="btn btn-success" href="licoes_edit.php?curso_id=<?php echo $_GET['curso_id']?>&modulo_id=<?php echo $_GET['modulo_id']?>&id=0" role="button"><i class="glyphicon glyphicon-plus"></i> Nova Liçao</a>
+ <a href="modulos.php?curso_id=<?php echo $_GET['curso_id']?>" class="btn btn-danger">voltar</a>
 <p/> 
 <table class="table table-bordered table-hover table-striped">
 	<thead>
@@ -34,8 +35,8 @@ $stmt->bind_result($id,$nome,$tipo,$ordem);
 			<td><?php echo htmlspecialchars($tipo)?></td>
 			<td><?php echo htmlspecialchars($ordem)?></td>
 			<td> 
-				<a class="btn btn-success" href="areas_edit.php?id=<?php echo $id ?>" role="button"><i class="glyphicon glyphicon-pencil"></i> Editar</a> 
-				<a class="btn btn-danger" href="areas_delete.php?id=<?php echo $id ?>" onclick="return confirm('Deseja realmente remover?');" role="button"><i class="glyphicon glyphicon-remove"></i> Remover</a> 
+				<a class="btn btn-success" href="licoes_edit.php?curso_id=<?php echo $_GET['curso_id']?>&modulo_id=<?php echo $_GET['modulo_id']?>&id=<?php echo $id ?>" role="button"><i class="glyphicon glyphicon-pencil"></i> Editar</a> 
+				<a class="btn btn-danger" href="licoes_delete.php?curso_id=<?php echo $_GET['curso_id']?>&modulo_id=<?php echo $_GET['modulo_id']?>&id=<?php echo $id ?>" onclick="return confirm('Deseja realmente remover?');" role="button"><i class="glyphicon glyphicon-remove"></i> Remover</a> 
 
 			</td>
 		</tr>
