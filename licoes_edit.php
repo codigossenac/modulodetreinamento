@@ -1,5 +1,5 @@
 <?php
-
+include 'conf/requerLogin.php';
 include 'conf/header.php';
 
 $modulo_id=$_GET['modulo_id'];

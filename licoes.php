@@ -1,4 +1,5 @@
 <?php
+include 'conf/requerLogin.php';
 include 'conf/header.php';
 
 $stmt = $conn->prepare("SELECT licao_id,licao_nome,licao_tipo,licao_ordem FROM licoes where licao_modulo_id = ? order by licao_ordem");

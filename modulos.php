@@ -1,4 +1,5 @@
 <?php
+include 'conf/requerLogin.php';
 include 'conf/header.php';
 
 

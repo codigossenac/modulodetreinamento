@@ -4,7 +4,7 @@ if (isset($_GET['id'])){
 
 include 'conf/conn.php';
 
-$stmt = $conn->prepare("delete from modulos where modulo_id = ? ");
+$stmt = $conn->prepare("delete from matriculas where matricula_id = ? ");
 
 if (!$stmt) {
 	echo "erro ao preparar stmt";
@@ -25,5 +25,5 @@ $conn->close();
 }
 ?>
 <script>
-	window.location = 'modulos.php?curso_id=<?php echo $_GET['curso_id']?>';
+	window.location = 'matriculas.php?usuario_id=<?php echo $_GET['usuario_id']?>';
 </script>

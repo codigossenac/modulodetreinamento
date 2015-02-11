@@ -1,4 +1,5 @@
 <?php
+include 'conf/requerLogin.php';
 include 'conf/header.php';
 
 $stmt = $conn->prepare("SELECT area_id,area_nome FROM areas order by area_nome");

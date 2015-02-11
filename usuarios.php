@@ -1,4 +1,5 @@
 <?php
+include 'conf/requerLogin.php';
 include 'conf/header.php';
 
 $stmt = $conn->prepare("SELECT usuario_id,usuario_nome,usuario_login,usuario_tipo FROM usuarios order by usuario_nome");
@@ -40,6 +41,7 @@ $stmt->bind_result($id,$nome,$login,$tipo);
 			<td> 
 				<a class="btn btn-success" href="usuarios_edit.php?id=<?php echo $id ?>" role="button"><i class="glyphicon glyphicon-pencil"></i> Editar</a> 
 				<a class="btn btn-danger"  href="usuarios_delete.php?id=<?php echo $id ?>" onclick="return confirm('Deseja realmente remover?');" role="button"><i class="glyphicon glyphicon-remove"></i> Remover</a> 
+				<a class="btn btn-primary" href="matriculas.php?usuario_id=<?php echo $id ?>" role="button"><i class="glyphicon glyphicon-list-alt"></i> Matriculas</a> 
 			</td>
 		</tr>
 	<?php

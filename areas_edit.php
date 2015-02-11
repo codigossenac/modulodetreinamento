@@ -1,5 +1,5 @@
 <?php
-
+include 'conf/requerLogin.php';
 include 'conf/header.php';
 
 if (isset($_POST['id'])){

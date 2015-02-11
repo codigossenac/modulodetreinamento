@@ -1,4 +1,5 @@
 <?php
+include 'conf/requerLogin.php';
 include 'conf/header.php';
 
 $stmt = $conn->prepare("SELECT c.curso_id,c.curso_nome,	c.curso_descricao, a.area_nome FROM cursos c inner join areas a on a.area_id = c.curso_area_id order by a.area_nome,c.curso_nome");

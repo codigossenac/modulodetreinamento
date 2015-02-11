@@ -1,4 +1,5 @@
 <?php
+include 'conf/requerLogin.php';
 if (isset($_GET['id'])){
 
 include 'conf/conn.php';
